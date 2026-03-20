@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1774002635 source:d:\Універ\bmtp-lab9-Вірченко\prj\Вірченко_task\main.cpp
+	<iostream>
+	<windows.h>
+	"s_calculation.h"
+
+1774003512 d:\Універ\bmtp-lab9-Вірченко\prj\Вірченко_task\s_calculation.h
+	<string>
+	<vector>
+
