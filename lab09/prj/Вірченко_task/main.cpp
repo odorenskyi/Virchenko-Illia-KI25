@@ -1,11 +1,20 @@
 #include <iostream>
 #include <windows.h>
+#include <vector>
+#include <string>
+#include <limits>
 #include "s_calculation.h"
 
 using namespace std;
 
+// Функція для очищення буфера після некоректного введення
+void clear_input_error() {
+    cout << "\a"; // Звуковий сигнал помилки
+    cin.clear();  // Скидаємо прапорці помилок
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очищаємо весь буфер
+}
+
 int main() {
-    // Налаштування кирилиці для консолі Windows
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
@@ -19,59 +28,90 @@ int main() {
         cout << "a - Задача 9.3 (Двійковий аналіз)" << endl;
         cout << "-----------------------------------------------" << endl;
         cout << "Ваш вибір: ";
-        cin >> menu_choice;
+
+        if (!(cin >> menu_choice)) {
+            clear_input_error();
+            continue;
+        }
 
         switch (menu_choice) {
             case 'u': {
                 double x, y, z;
                 cout << "Введіть x, y, z: ";
-                cin >> x >> y >> z;
-                double result = s_calculation(x, y, z);
-            cout << "Результат S = " << result << endl;
-        break;
-}
+                if (!(cin >> x >> y >> z)) {
+                    cout << "Помилка: Введено не число!" << endl;
+                    clear_input_error();
+                } else {
+                    try {
+                        cout << "Результат S = " << s_calculation(x, y, z) << endl;
+                    } catch (const exception& e) {
+                        cout << "Математична помилка: " << e.what() << endl;
+                    }
+                }
+                break;
+            }
             case 'o': {
                 int b; string s, d;
-                cout << "Введіть бал: "; cin >> b;
-                try { wind_calculation(b, s, d); cout << d << " (" << s << " м/с)" << endl; }
-                catch (...) { cout << "\aПомилка!" << endl; }
+                cout << "Введіть бал (0-12): ";
+                if (!(cin >> b)) {
+                    cout << "Помилка: Потрібно ввести ціле число!" << endl;
+                    clear_input_error();
+                } else {
+                    try {
+                        wind_calculation(b, s, d);
+                        cout << "Результат: " << d << " (" << s << " м/с)" << endl;
+                    } catch (const invalid_argument& e) {
+                        cout << "Помилка: " << e.what() << endl;
+                    }
+                }
                 break;
             }
             case 'p': {
                 int n, m; double p1, p2; vector<int> o;
-                cout << "Введіть n, m: "; cin >> n >> m;
-                power_and_odds(n, m, p1, p2, o);
-                cout << "Степені: " << p1 << ", " << p2 << endl;
+                cout << "Введіть цілі n та m: ";
+                if (!(cin >> n >> m)) {
+                    cout << "Помилка: Введіть два цілих числа!" << endl;
+                    clear_input_error();
+                } else {
+                    power_and_odds(n, m, p1, p2, o);
+                    cout << "n^m = " << p1 << ", m^n = " << p2 << endl;
+                    cout << "Непарні числа в діапазоні: ";
+                    for(int val : o) cout << val << " ";
+                    cout << endl;
+                }
                 break;
             }
             case 'a': {
                 int N;
                 cout << "Введіть N (0-80000): ";
-                cin >> N;
-                try {
-                    int result = binary_analysis(N);
-
-                    // Визначаємо другий біт (вага 2), щоб знати, що ми рахували
-                    int second_bit = (N >> 1) & 1;
-
-                    if (second_bit == 0) {
-                        cout << "Другий біт дорівнює 0. Підраховано кількість НУЛІВ: " << result << endl;
-                    } else {
-                        cout << "Другий біт дорівнює 1. Підраховано кількість ОДИНИЦЬ: " << result << endl;
+                if (!(cin >> N)) {
+                    cout << "Помилка: Введіть натуральне число!" << endl;
+                    clear_input_error();
+                } else {
+                    try {
+                        int result = binary_analysis(N);
+                        int bit2 = (N >> 1) & 1;
+                        if (bit2 == 0) {
+                            cout << "[2-й біт = 0] Результат (кількість НУЛІВ): " << result << endl;
+                        } else {
+                            cout << "[2-й біт = 1] Результат (кількість ОДИНИЦЬ): " << result << endl;
+                        }
+                    } catch (const invalid_argument& e) {
+                        cout << "Помилка: " << e.what() << endl;
                     }
                 }
-                catch (const std::exception& e) {
-                    cout << "\aПомилка: " << e.what() << endl;
-                }
-            break;
+                break;
             }
             default:
-                cout << "\a"; // Звуковий сигнал при помилці
-                cout << "Невірний символ!" << endl;
+                cout << "\aНевірний символ меню! Спробуйте ще раз." << endl;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
 
-        cout << "\nВведіть 's' для виходу або будь-який символ для повтору: ";
+        cout << "\n-----------------------------------------------" << endl;
+        cout << "Вийти? (s - так, будь-що інше - ні): ";
         cin >> exit_choice;
+        // Очищаємо буфер після кожного циклу, щоб наступний cin >> menu_choice працював чисто
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     } while (exit_choice != 's' && exit_choice != 'S');
 
