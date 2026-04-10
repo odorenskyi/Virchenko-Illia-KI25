@@ -15,4 +15,10 @@ void power_and_odds(int n, int m, double& n_pow_m, double& m_pow_n, std::vector<
 // Задача 9.3
 int binary_analysis(int N);
 
+// Задача 10
+void Task10_1(const std::string& inputFileName, std::ofstream& outFile);
+void Task10_2(const std::string& fileName, std::ofstream& outFile);
+void Task10_3(double x, double y, double z, int b, std::ofstream& outFile);
+
+
 #endif
