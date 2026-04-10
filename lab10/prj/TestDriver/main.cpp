@@ -6,7 +6,6 @@
 #include <clocale>
 #include "s_calculation.h"
 
-// Структури для автоматизації тест-сьютів
 struct TestCase101 {
     std::string id;
     std::string input_text;
@@ -18,7 +17,6 @@ struct TestCase103 {
     int b;
 };
 
-// Функція для логування результатів
 void logStatus(std::ofstream& log, const std::string& testID, bool passed) {
     std::string status = passed ? "ПРОЙДЕНО (passed)" : "ПОМИЛКА (failed)";
     log << "Тест " << testID << ": " << status << "\n";
@@ -31,7 +29,6 @@ void logStatus(std::ofstream& log, const std::string& testID, bool passed) {
 }
 
 int main() {
-    // Налаштування локалі для підтримки української мови
     setlocale(LC_ALL, "Ukrainian");
 
     const std::string testInFile = "text1.txt";
@@ -47,7 +44,6 @@ int main() {
     testLog << "=== ПРОТОКОЛ ТЕСТУВАННЯ (TS_10_1) ===\n";
     testLog << "Автор: Ілля Вірченко\n\n";
 
-    // --- ТЕСТУВАННЯ ЗАДАЧІ 10.1 (7 тест-кейсів) ---
     testLog << "[ЗАДАЧА 10.1 - Аналіз тексту]\n";
     std::vector<TestCase101> suite101 = {
         {"TC_10.1_01", "Коли малим ти вперше став на ноги —"},
@@ -59,7 +55,6 @@ int main() {
         {"TC_10.1_07", "Вона прибігла стомлена з роботи,"}
     };
 
-    // Очищуємо вихідний файл перед початком
     std::ofstream clearOut(testOutFile, std::ios::trunc);
     clearOut.close();
 
@@ -75,7 +70,6 @@ int main() {
         logStatus(testLog, tc.id, true);
     }
 
-    // --- ТЕСТУВАННЯ ЗАДАЧІ 10.2 (6 тест-кейсів) ---
     testLog << "\n[ЗАДАЧА 10.2 - Системна інформація]\n";
     std::vector<std::string> suite102 = {
         "TC_10.2_01", "TC_10.2_02", "TC_10.2_03",
@@ -90,7 +84,6 @@ int main() {
         logStatus(testLog, id, true);
     }
 
-    // --- ТЕСТУВАННЯ ЗАДАЧІ 10.3 (6 тест-кейсів) ---
     testLog << "\n[ЗАДАЧА 10.3 - Математика та Біти]\n";
     std::vector<TestCase103> suite103 = {
         {"TC_10.3_01", 0.5, 1.0, 1.5, 2},
