@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1775813176 source:d:\Універ\bmtp-lab10-Вірченко\prj\testdriver\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<string>
+	<iomanip>
+	"s_calculation.h"
+
+1775813277 d:\Універ\bmtp-lab10-Вірченко\prj\testdriver\s_calculation.h
+	<string>
+	<vector>
+
