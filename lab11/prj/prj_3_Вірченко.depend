@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1777628449 source:d:\Універ\bmtp-lab11-Вірченко\prj_3_Вірченко\main.cpp
+	<iostream>
+	"struct_type_project_3.h"
+	<windows.h>
+	"Zavalai.h"
+	"Virchenko.h"
+
+1777625325 d:\Універ\bmtp-lab11-Вірченко\prj_3_Вірченко\struct_type_project_3.h
+
+1777628449 d:\Універ\bmtp-lab11-Вірченко\prj_3_Вірченко\zavalai.h
+	<iostream>
+	<fstream>
+	<iomanip>
+	"struct_type_project_3.h"
+	<windows.h>
+
+1777627905 d:\Універ\bmtp-lab11-Вірченко\prj_3_Вірченко\virchenko.h
+	<iostream>
+	<fstream>
+	<cstring>
+	"struct_type_project_3.h"
+
