@@ -1,0 +1,40 @@
+# depslib dependency file v1.0
+1780044077 source:d:\Універ\bmtp-lab12-Вірченко\teacher\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<cmath>
+	<filesystem>
+	<windows.h>
+	"s_calculation.h"
+
+1780043743 d:\Універ\bmtp-lab12-Вірченко\teacher\s_calculation.h
+	<string>
+	<vector>
+
+1780044214 source:d:\Універ\lab12\teacher\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<cmath>
+	<filesystem>
+	<windows.h>
+	"s_calculation.h"
+
+1780043743 d:\Універ\lab12\teacher\s_calculation.h
+	<string>
+	<vector>
+
+1780044634 source:d:\Універ\lab12\prj\teacher\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<cmath>
+	<filesystem>
+	<windows.h>
+	"s_calculation.h"
+
+1780043743 d:\Універ\lab12\prj\teacher\s_calculation.h
+	<string>
+	<vector>
+
